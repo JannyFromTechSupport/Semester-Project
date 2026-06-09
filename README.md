@@ -22,14 +22,14 @@ Flora Farms operates greenhouses in Naivasha, Kenya, to cultivate various flower
 
 ### Table 1: Environmental Requirements for Daisy Growth
 
-| Parameter | Optimal Range / Condition |
-|---|---|
-| Temperature | 15°C – 24°C |
-| Relative Humidity | 40% – 60% RH |
-| Soil Type | Well-drained loamy or sandy-loam soil rich in organic matter |
-| Soil Moisture Content | 40% – 60% Field Capacity |
-| Soil pH | 6.0 – 6.8 |
-| Sunlight Exposure | 6 – 8 hours of direct sunlight per day |
+| Parameter             | Optimal Range / Condition                                    |
+|-----------------------|--------------------------------------------------------------|
+| Temperature           | 15°C – 24°C                                                  |
+| Relative Humidity     | 40% – 60% RH                                                 |
+| Soil Type             | Well-drained loamy or sandy-loam soil rich in organic matter |
+| Soil Moisture Content | 40% – 60% Field Capacity                                     |
+| Soil pH               | 6.0 – 6.8                                                    |
+| Sunlight Exposure     | 6 – 8 hours of direct sunlight per day                       |
 
 **Temperature**
 
@@ -63,21 +63,21 @@ The greenhouse monitoring system requires the following hardware components:
 
 ### Table 2: Hardware Components
 
-| Component | Quantity | Purpose |
-|---|---|---|
-| ESP32S DevKit Wi-Fi + BLE Module (30 Pin) | 1 – 2 | Main microcontroller and wireless communication |
-| DHT22 (AM2302) Temperature and Humidity Sensor | 1 | Measures temperature and relative humidity |
-| MQ-5 Gas Sensor | 1 | Detects LPG, methane and natural gas |
-| 1.3" OLED Display (128 × 64, I²C) | 1 | Displays environmental readings locally |
-| 5V Single Channel Relay Module | 1 | Controls switching operations between ESP32 nodes |
-| Breadboard | 1 | Circuit prototyping |
-| Jumper Wires (Male-to-Male / Male-to-Female) | Several | Electrical connections between components |
-| 10 kΩ Resistor | 1 | DHT22 data line pull-up |
-| 220 Ω – 1 kΩ Resistors | Several | Signal conditioning and voltage division |
-| 100 nF Capacitor | 2 | Decoupling / noise filtering on ESP32 supply pins |
-| 10 µF Capacitor | 1 | Bulk power stabilisation |
-| USB Cable | 1 | Programming and powering the ESP32 |
-| 5V Power Supply | 1 | Powers sensors and relay module |
+| Component                                      | Quantity | Purpose                                           |
+|------------------------------------------------|----------|---------------------------------------------------|
+| ESP32S DevKit Wi-Fi + BLE Module (30 Pin)      | 1 – 2    | Main microcontroller and wireless communication   |
+| DHT22 (AM2302) Temperature and Humidity Sensor | 1        | Measures temperature and relative humidity        |
+| MQ-5 Gas Sensor                                | 1        | Detects LPG, methane and natural gas              |
+| 1.3" OLED Display (128 × 64, I²C)              | 1        | Displays environmental readings locally           |
+| 5V Single Channel Relay Module                 | 1        | Controls switching operations between ESP32 nodes |
+| Breadboard                                     | 1        | Circuit prototyping                               |
+| Jumper Wires (Male-to-Male / Male-to-Female)   | Several  | Electrical connections between components         |
+| 10 kΩ Resistor                                 | 1        | DHT22 data line pull-up                           |
+| 220 Ω – 1 kΩ Resistors                         | Several  | Signal conditioning and voltage division          |
+| 100 nF Capacitor                               | 2        | Decoupling / noise filtering on ESP32 supply pins |
+| 10 µF Capacitor                                | 1        | Bulk power stabilisation                          |
+| USB Cable                                      | 1        | Programming and powering the ESP32                |
+| 5V Power Supply                                | 1        | Powers sensors and relay module                   |
 
 ---
 
@@ -88,7 +88,7 @@ The following datasheets and technical references were collected for the compone
 ### Table 3: Datasheets and Technical References
 
 | Component | Datasheet / Technical Reference |
-|---|---|
+|-----------|---------------------------------|
 | ESP32S DevKit Wi-Fi + BLE Module (30 Pin) | [ESP32-WROOM-32 Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf) |
 | DHT22 (AM2302) Temperature and Humidity Sensor | [DHT22 Datasheet](https://cdn-shop.adafruit.com/datasheets/DHT22.pdf) |
 | MQ-5 Gas Sensor | [MQ-5 Datasheet](https://www.winsen-sensor.com/d/files/manual/mq-5.pdf) |
@@ -209,7 +209,7 @@ The following datasheets and technical references were collected for the compone
 
 ---
 
-### Architecture C — 1 ESP32S connected to 1 DHT22, connected to 1 relay, which is connected to another ESP32S connected to 1 MQ-5
+### Architecture C: 1 ESP32S connected to 1 DHT22, connected to 1 relay, which is connected to another ESP32S connected to 1 MQ-5
 
 **Components used:**
 - ESP32 number 1
