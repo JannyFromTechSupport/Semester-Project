@@ -26,14 +26,14 @@ The simulation ran successfully, with the LCD correctly displaying temperature, 
 
 ### Physical Prototype
 
-**Status:** Partially working — hardware issue encountered
+**Status:** Partially working - hardware issue encountered
 
 **What worked:**
 - After installing the required libraries (`DHT sensor library`, `LiquidCrystal I2C`), the code successfully compiled and uploaded to the ESP32.
 - The LCD initialized correctly and displayed the startup message "SweetHertz IoT" (see evidence below).
 
 **The issue:**
-- Shortly after startup, the LCD began displaying "Sensor Error!" — indicating the DHT22 was not returning valid temperature/humidity readings (the `isnan()` check in the code was failing).
+- Shortly after startup, the LCD began displaying "Sensor Error!" indicating the DHT22 was not returning valid temperature/humidity readings (the `isnan()` check in the code was failing).
 - This contradicts the simulation, where the same logic produced consistent, valid sensor readings.
 
 **Troubleshooting attempted:**
@@ -42,7 +42,7 @@ The simulation ran successfully, with the LCD correctly displaying temperature, 
 - Re-flashed the firmware multiple times to rule out a corrupted upload.
 
 **Conclusion:**
-After ruling out software/library issues and confirming the wiring matched the schematic from Deliverable 1, the team concluded this was most likely a **hardware fault** — either a faulty DHT22 unit or a marginal physical connection (e.g. a loose pull-up resistor or breadboard contact) not visible during inspection.
+After ruling out software/library issues and confirming the wiring matched the schematic from Deliverable 1, the team concluded this was most likely a **hardware fault** either a faulty DHT22 unit or a marginal physical connection such as a loose pull-up resistor or breadboard contact not visible during inspection.
 
 **Recommendation:**
 Swap the DHT22 unit with a second unit to confirm whether the issue is sensor-specific, and test a different pull-up resistor value to confirm signal integrity on physical hardware before the next deliverable.
@@ -106,17 +106,17 @@ The team also explored Wokwi's VS Code extension with a `wokwi.toml` configurati
 
 **Wokwi Link:** [https://wokwi.com/projects/468142847060965377](https://wokwi.com/projects/468142847060965377)
 
-The simulation ran successfully — ESP32 #1 read the DHT22 and triggered the relay based on a temperature threshold, while ESP32 #2 independently read the MQ2 gas sensor.
+The simulation ran successfully ESP32 #1 read the DHT22 and triggered the relay based on a temperature threshold, while ESP32 #2 independently read the MQ2 gas sensor.
 
 ### Physical Prototype
 
-**Status:** Did not work — code never successfully uploaded
+**Status:** Did not work - code never successfully uploaded
 
 **Hardware constraint:**
 Due to limited lab resources, the lab technician was unable to provide two identical ESP32 boards as used in the simulation. The team instead had to use two visibly different ESP32 variants:
 
-- **"ESP32 Node"** — featured 3 ground pins and a visible status LED indicating power/connection state.
-- **"ESP32 Dev Kit"** — featured only 2 ground pins and no status LED.
+- **"ESP32 Node"** : featured 3 ground pins and a visible status LED indicating power/connection state.
+- **"ESP32 Dev Kit"** : featured only 2 ground pins and no status LED.
 
 This pin-count and behavioural mismatch suggests the two boards were different revisions or manufacturer variants, which may not have matched the pin layout assumed by the Wokwi simulation's board footprint.
 
@@ -138,9 +138,9 @@ This occurred during the flashing stage (after "Hard resetting via RTS pin..."),
 
 **Suspected causes:**
 
-1. **Faulty or low-quality USB cable initially used** — confirmed as one contributing factor, since the lab-provided cable did not work at all and had to be replaced.
-2. **Board variant mismatch** — the differing pin layouts and behaviour (ground pin count, status LED) between the two ESP32 boards used suggest they may not be fully equivalent to the `ESP32-DevKitC-V4` footprint used in the Wokwi simulation, which could affect both wiring accuracy and serial communication reliability.
-3. **Possible faulty DHT22 unit** — since this circuit reused the same DHT22 sensor from Architecture (a), which also failed at runtime with a "Sensor Error!", there is a reasonable possibility this specific DHT22 unit is defective. This could not be confirmed here, however, since the upload itself failed before any sensor code could execute.
+1. **Faulty or low-quality USB cable initially used** : confirmed as one contributing factor, since the lab-provided cable did not work at all and had to be replaced.
+2. **Board variant mismatch** : the differing pin layouts and behaviour (ground pin count, status LED) between the two ESP32 boards used suggest they may not be fully equivalent to the `ESP32-DevKitC-V4` footprint used in the Wokwi simulation, which could affect both wiring accuracy and serial communication reliability.
+3. **Possible faulty DHT22 unit** : since this circuit reused the same DHT22 sensor from Architecture (a), which also failed at runtime with a "Sensor Error!", there is a reasonable possibility this specific DHT22 unit is defective. This could not be confirmed here, however, since the upload itself failed before any sensor code could execute.
 
 **Recommendation:**
 - Request matching ESP32 board models for future multi-MCU physical builds, to eliminate pin-layout mismatch as a variable.
