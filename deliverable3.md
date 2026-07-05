@@ -48,40 +48,23 @@ This deliverable extends Architecture (a) from Deliverable 2 — **ESP32 + MQ-5 
 
 **Wokwi Project:** [https://wokwi.com/projects/468734014046870529](https://wokwi.com/projects/468734014046870529)
 
-<!-- To publish: open the project in Wokwi, click Share → make public, copy the link -->
-
 ### Simulation Screenshot
 
-<!-- Add a screenshot of the running Wokwi simulation here -->
-<!-- e.g.: ![Wokwi Simulation](images/d3_wokwi_simulation.png) -->
+![Wokwi Simulation](images/delivarable_3_wokwi_simulation.png)
 
 ---
 
 ## 2. Firmware
 
-The browser Wokwi project files are stored in [`deliverable3/wokwi-web/sketch.ino`](deliverable3/wokwi-web/sketch.ino), [`deliverable3/wokwi-web/diagram.json`](deliverable3/wokwi-web/diagram.json), and [`deliverable3/wokwi-web/libraries.txt`](deliverable3/wokwi-web/libraries.txt). A matching PlatformIO copy is also kept in [`deliverable3/src/main.cpp`](deliverable3/src/main.cpp) for local builds with [`deliverable3/platformio.ini`](deliverable3/platformio.ini).
+The firmware for the simulation is stored in [`deliverable3/wokwi-web/sketch.ino`](deliverable3/wokwi-web/sketch.ino), with the corresponding circuit definition in [`deliverable3/wokwi-web/diagram.json`](deliverable3/wokwi-web/diagram.json) and library list in [`deliverable3/wokwi-web/libraries.txt`](deliverable3/wokwi-web/libraries.txt). The project configuration is provided in [`deliverable3/platformio.ini`](deliverable3/platformio.ini).
 
-### Key logic
+### Firmware Operation
 
 1. **Boot sequence** — initialises LCD, DHT22, connects to `Wokwi-GUEST` WiFi, syncs NTP time, validates InfluxDB connection.
 2. **Sensor loop** — reads DHT22 (temperature & humidity) and MQ-5 analog value every 2 seconds; displays live readings on the LCD.
-3. **Cloud publish** — every 10 seconds, writes a data point to InfluxDB using the **line protocol** over HTTPS:
+3. **Cloud publish** — every 10 seconds, writes the sensor readings to InfluxDB Cloud over HTTPS for time-series storage and later visualisation in Grafana.
 
-```
-greenhouse_sensors,device=esp32-flora-farms,location=naivasha-greenhouse
-  temperature=23.50,humidity=55.00,gas_raw=2048,gas_voltage=1.650
-```
-
-### InfluxDB credentials (fill in before running)
-
-Open [`deliverable3/wokwi-web/sketch.ino`](deliverable3/wokwi-web/sketch.ino) and update these four `#define` values at the top of the file:
-
-```cpp
-#define INFLUXDB_URL    "https://us-east-1-1.aws.cloud2.influxdata.com"
-#define INFLUXDB_TOKEN  "YOUR_INFLUXDB_API_TOKEN"   // replace with your token
-#define INFLUXDB_ORG    "ca70190bc3f80c2d"
-#define INFLUXDB_BUCKET "greenhouse"
-```
+The firmware therefore performs local sensing, on-device display, wireless transmission, and cloud logging within a single ESP32-based monitoring node.
 
 ---
 
@@ -112,74 +95,25 @@ Grafana was connected to the same InfluxDB bucket and used to create dashboard p
 
 ### Dashboard Panels
 
-#### Panel 1 — Temperature Over Time (Line Chart)
+The Grafana dashboard was designed to track the main greenhouse variables over time and to relate them to the environmental ranges identified for daisy growth in Deliverable 1.
 
-**Flux query:**
-
-```flux
-from(bucket: "greenhouse")
-  |> range(start: -1h)
-  |> filter(fn: (r) => r._measurement == "greenhouse_sensors" and r._field == "temperature")
-  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
-```
-
-> Displays how greenhouse temperature trends over the past hour. The optimal range for daisy growth (15–24 °C) is marked with threshold lines.
-
-#### Panel 2 — Humidity Over Time (Line Chart)
-
-**Flux query:**
-
-```flux
-from(bucket: "greenhouse")
-  |> range(start: -1h)
-  |> filter(fn: (r) => r._measurement == "greenhouse_sensors" and r._field == "humidity")
-  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
-```
-
-> Shows relative humidity trends. Threshold lines at 40% and 60% highlight the optimal daisy growth range.
-
-#### Panel 3 — Gas Level Over Time (Bar Chart / Time Series)
-
-**Flux query:**
-
-```flux
-from(bucket: "greenhouse")
-  |> range(start: -1h)
-  |> filter(fn: (r) => r._measurement == "greenhouse_sensors" and r._field == "gas_raw")
-  |> aggregateWindow(every: 1m, fn: max, createEmpty: false)
-```
-
-> Plots peak MQ-5 ADC readings per minute, indicating gas concentration trends in the greenhouse environment.
+| Panel | Visualisation | Purpose |
+|-------|---------------|---------|
+| Temperature Over Time | Line chart | Shows how greenhouse temperature changes over time and whether it remains within the desirable 15–24 °C range. |
+| Humidity Over Time | Line chart | Tracks relative humidity trends and helps identify whether the environment remains near the target 40–60% RH range. |
+| Gas Level Over Time | Bar chart / time series | Displays the changing analog MQ-5 reading, indicating variation in simulated gas concentration levels. |
 
 ### Dashboard Screenshots
 
-<!-- Replace with your actual Grafana screenshots once the dashboard is live -->
-<!-- ![Grafana Dashboard Overview](images/d3_grafana_dashboard.png) -->
-<!-- ![Temperature Panel](images/d3_grafana_temperature.png) -->
-<!-- ![Humidity Panel](images/d3_grafana_humidity.png) -->
-<!-- ![Gas Level Panel](images/d3_grafana_gas.png) -->
+![Grafana Dashboard Overview](images/grafana_dashboard.png)
+
 
 ### Public Dashboard Link
 
-<!-- Grafana Cloud → Share → Make public → paste link here -->
-**Grafana Dashboard:** [_Add public Grafana link here_]
+**Grafana Dashboard:** [https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913](https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913)
 
 ---
 
 ## 5. Group Work Evidence
-
-<!-- Add a group photo here. Example: -->
-<!-- ![Group Work Photo](images/team_photo.jpeg) -->
-
-The team collaborated on this deliverable as follows:
-
-| Member | Contribution |
-|--------|-------------|
-| Njogorio Sharon Nyambura | InfluxDB Cloud setup and bucket configuration |
-| Jonyo Janny | Grafana data source setup and dashboard panels |
-| Ogutu Cindy Atieno | Firmware coding (cloud publish logic) |
-| Mukoma Dennis Murage | PlatformIO + Wokwi project setup |
-| Kemoi Kristina Chebet | Testing, serial monitor verification |
-| Mapelu Neema Naserian | Documentation and Markdown submission |
 
 ![Group Work Photo](images/team_photo.jpeg)
