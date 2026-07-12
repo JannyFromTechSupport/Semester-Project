@@ -165,6 +165,6 @@ The recurring DHT22 "Sensor Error!" across both Architecture (a) and Architectur
 
 ## Evidence of Group Work
 
-![SweetHertz Team](images/team_photo.jpeg)
+<img width="1280" height="690" alt="image" src="https://github.com/user-attachments/assets/ed5085b4-4d84-4cbe-a4f3-c568c4402a92" />
 
 *The SweetHertz team collaborating during the project development process.*
