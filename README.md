@@ -112,6 +112,8 @@ The Grafana dashboard was designed to track the main greenhouse variables over t
 
 **Grafana Dashboard:** [https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913](https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913) 
 
+---
+
 ## 5. Physical Implementation (Attempt) 
 
 Despite **consistent hardware troubles,** we attempted the **physical implementation** as well. 
