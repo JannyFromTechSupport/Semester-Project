@@ -110,11 +110,19 @@ The Grafana dashboard was designed to track the main greenhouse variables over t
 
 ### Public Dashboard Link
 
-**Grafana Dashboard:** [https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913](https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913)
+**Grafana Dashboard:** [https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913](https://wittyzeppelin2875.grafana.net/goto/s8b8wt?orgId=stacks-1713913) 
+
+## 5. Physical Implementation (Attempt) 
+
+Despite **consistent hardware troubles,** we attempted the **physical implementation** as well. 
+
+| | |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/6a2af0fe-75fb-4e82-b71f-7e840224cde5" width="300"> | <img src="https://github.com/user-attachments/assets/92d3c9c4-14a7-4144-8e52-ba80b228c80a" width="300"> | 
 
 ---
 
-## 5. Group Work Evidence
+## 6. Group Work Evidence
 
 <img width="1600" height="1200" alt="WhatsApp Image 2026-07-12 at 19 42 34" src="https://github.com/user-attachments/assets/3b0d451e-f2d2-468e-9d3e-f19629b08b5e" />
 
